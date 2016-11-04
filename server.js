@@ -11,7 +11,7 @@ var router = express.Router();
 
 router.get('/roll', function (req, res) {
     var max = -1;
-    switch (req.query.type) {
+    switch (req.query.text) {
         case "d6":
             max = 6;
             break;
