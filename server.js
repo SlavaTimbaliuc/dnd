@@ -33,7 +33,10 @@ router.get('/roll', function (req, res) {
     }
 
     var randomRoll = Math.floor(Math.random() * max + 1);
-    res.json({ roll: randomRoll});
+    res.json({
+        "response_type": "in_channel",
+        "text": randomRoll
+    })
 });
 
 app.use('/', router);
