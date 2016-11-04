@@ -8,10 +8,12 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
 
 var router = express.Router();
-
 router.get('/roll', function (req, res) {
-    var max = -1;
+    var max;
     switch (req.query.text) {
+        case "":
+            max = 20;
+            break;
         case "d6":
             max = 6;
             break;
@@ -27,16 +29,29 @@ router.get('/roll', function (req, res) {
         case "d20":
             max = 20;
             break;
+        case "help":
+            res.json({
+                "response_type": "ephemeral",
+                "text": "usage: /roll {d6|d8|d10|d12|d20}"
+            });
+            return;
         default:
-            max = 20;
+            max = -1;
             break;
     }
 
-    var randomRoll = Math.floor(Math.random() * max + 1);
-    res.json({
-        "response_type": "in_channel",
-        "text": randomRoll
-    })
+    if (max == -1) {
+        res.json({
+            "response_type": "ephemeral",
+            "text": "invalid dice type, accepted types: {d6|d8|d10|d12|d20}"
+        })
+    } else {
+        var randomRoll = Math.floor(Math.random() * max + 1);
+        res.json({
+            "response_type": "in_channel",
+            "text": randomRoll
+        })
+    }
 });
 
 app.use('/', router);
