@@ -33,7 +33,7 @@ router.get('/roll', function (req, res) {
     }
 
     var randomRoll = Math.floor(Math.random() * max + 1);
-    res.json({ message: randomRoll});
+    res.json({ roll: randomRoll});
 });
 
 app.use('/', router);
