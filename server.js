@@ -9,10 +9,6 @@ var port = process.env.PORT || 8080;
 
 var router = express.Router();
 
-router.get('/', function (req, res) {
-    res.json({ message: "hooray! welcome to our api!" });
-});
-
 router.get('/roll', function (req, res) {
     var max = -1;
     switch (req.query.type) {
@@ -40,7 +36,7 @@ router.get('/roll', function (req, res) {
     res.json({ message: randomRoll});
 });
 
-app.use('/api', router);
+app.use('/', router);
 
 app.listen(port);
 console.log("Magic happens on port " + port);
