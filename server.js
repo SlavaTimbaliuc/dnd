@@ -10,6 +10,7 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 router.get('/roll', function (req, res) {
     var max;
+
     switch (req.query.text) {
         case "":
             max = 20;
