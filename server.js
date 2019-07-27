@@ -14,6 +14,9 @@ router.get('/roll', function (req, res) {
         case "":
             max = 20;
             break;
+        case "d4":
+            max = 4;
+            break;
         case "d6":
             max = 6;
             break;
